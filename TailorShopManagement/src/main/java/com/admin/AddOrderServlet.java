@@ -25,20 +25,23 @@ public class AddOrderServlet extends HttpServlet {
 		String email= request.getParameter("email");
 		String worker= request.getParameter("workertype");
 		String cloth= request.getParameter("cloth");
-		String datetime= request.getParameter("dateTime");
+		String dateTime= request.getParameter("dateTime");
+		String urgent= request.getParameter("clothStatus");
+		String deliveryDate=request.getParameter("deliveryDate");
+		int advance =Integer.parseInt(request.getParameter("advance"));
 		AdminDao adminDao = new AdminDao();
-		int detail=adminDao.addOrder(name, contact, address, email, worker, cloth,datetime);
+		int result=adminDao.addOrder(name, contact, address, email, worker, cloth,dateTime,advance,urgent,deliveryDate);
 		System.out.println("order added successfully");
 		if(cloth.equals("dress")) {
-			RequestDispatcher dispatcher=request.getRequestDispatcher("dressdetails.jsp?username=" +name+ "&dateTime=" +datetime);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("dressdetails.jsp?username=" +name+ "&dateTime=" +dateTime);
 			dispatcher.forward(request, response);
 		}
 		else if(cloth.equals("blouse")) {
-			RequestDispatcher dispatcher=request.getRequestDispatcher("blousedetails.jsp?username="+name+ "&dateTime=" +datetime);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("blousedetails.jsp?username="+name+ "&dateTime=" +dateTime);
 			dispatcher.forward(request, response);
 		}
 		else if(cloth.equals("both")){
-			RequestDispatcher dispatcher=request.getRequestDispatcher("dressblousedetails.jsp?username=" +name+ "&dateTime=" +datetime);
+			RequestDispatcher dispatcher=request.getRequestDispatcher("dressblousedetails.jsp?username=" +name+ "&dateTime=" +dateTime);
 			dispatcher.forward(request, response);
 		}
 	}

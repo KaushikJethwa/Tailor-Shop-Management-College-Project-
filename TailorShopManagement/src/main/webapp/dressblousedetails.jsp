@@ -4,14 +4,14 @@
 <html lang="en">
   <head>
     <title>Title</title>
-    <!-- Required meta tags -->
+    
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <!-- Bootstrap CSS v5.2.1 -->
+    
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -22,9 +22,9 @@
   </head>
 
   <body>
-    <header>
-      <!-- place navbar here -->
-      <header class="d-flex justify-content-center py-3">
+    <header class="d-flex justify-content-center py-3">
+    
+      
         <ul class="nav nav-item">
           <li class="nav-item">
             <a href="index.html" class="nav-link" aria-current="page">Home</a>
@@ -33,7 +33,7 @@
             <a href="AddOrder.jsp" class="nav-link">Back</a>
           </li>
         </ul>
-      </header>
+      
     </header>
     <main>
      <% String username = request.getParameter("username"); 
@@ -62,9 +62,20 @@
                     </select>
                     </div>
               </div>
+              <div class="mb-3">
+						<div class="dropdown">
+						<label>Aster:</label>
+							<select name="dressAster" id="astertype" required>
+								<option value="clientAster" style="background-color: #FFDBAA;">Client Aster</option>
+								<option value="shopAster">Shop Aster</option>
+								<option value="NO Aster" style="background-color: #FFDBAA;">No Aster</option>
+								
+							</select>
+						</div>
+					</div>
               <div class="mb-3" >
                   <label for="address" class="form-label">Enter Dress Measurements:</label>
-                  
+                  </div>
                 <div class="mb-3">
                   <label for="shoulder" class="form-label">Shoulder</label>
                   <input type="text" class="form-control" name="shoulder" placeholder="Enter Measurements for Shoulder" required>
@@ -129,7 +140,18 @@
                     
                     <div class="mb-3" >
                         <label for="address" class="form-label">Enter Blouse Measurements:</label>
-                        
+                        </div>
+                        <div class="mb-3">
+						<div class="dropdown">
+						<label>Aster:</label>
+							<select name="blouseAster" id="astertype" required>
+								<option value="clientAster" style="background-color: #FFDBAA;">Client Aster</option>
+								<option value="shopAster">Shop Aster</option>
+								<option value="NO Aster" style="background-color: #FFDBAA;">No Aster</option>
+								
+							</select>
+						</div>
+					</div>
                       <div class="mb-3">
                         <label for="shoulder" class="form-label">Shoulder</label>
                         <input type="text" class="form-control" name="shoulder" placeholder="Enter Measurements for Shoulder" required>
@@ -195,12 +217,12 @@
           </div>
          
       </div>
-      </div>
+      
     </main>
     <footer>
-      <!-- place footer here -->
+    
     </footer>
-    <!-- Bootstrap JavaScript Libraries -->
+    
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
       integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

@@ -14,8 +14,22 @@ public class BlouseBillPojo {
 	private int price;
 	private String email;
 	private int billNo;
+	private int advance;
+	private String deliveryDate;
 	
 	
+	public String getDeliveryDate() {
+		return deliveryDate;
+	}
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+	public int getAdvance() {
+		return advance;
+	}
+	public void setAdvance(int advance) {
+		this.advance = advance;
+	}
 	public int getBillNo() {
 		return billNo;
 	}

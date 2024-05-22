@@ -4,14 +4,11 @@
 <html lang="en">
   <head>
     <title>Title</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
-    <!-- Bootstrap CSS v5.2.1 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -26,9 +23,7 @@
     }
   </style>
   <body>
-    <header>
-      <!-- place navbar here -->
-      <header class="d-flex justify-content-center py-3 k">
+    <header class="d-flex justify-content-center py-3 ">
         <ul class="nav nav-item">
           <li class="nav-item">
             <a href="index.html" class="nav-link" aria-current="page">Home</a>
@@ -38,7 +33,6 @@
           </li>
         </ul>
       </header>
-    </header>
     <main>
       <div class="row g-2">
         <div class="col-lg-6 col-md-6 p-3">
@@ -94,9 +88,7 @@
       </div>
     </main>
     <footer>
-      <!-- place footer here -->
     </footer>
-    <!-- Bootstrap JavaScript Libraries -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
       integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

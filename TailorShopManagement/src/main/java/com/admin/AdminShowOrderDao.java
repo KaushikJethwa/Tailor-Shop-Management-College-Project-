@@ -15,7 +15,7 @@ public class AdminShowOrderDao {
 
 	public List<ShowOrderPojo> showBlouseOrders() {
 		ArrayList<ShowOrderPojo> orders = new ArrayList<ShowOrderPojo>();
-		String blouseQuery = " select customerdetail.name,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,blousemeasurements.price from customerdetail,blousemeasurements where customerdetail.dateTime = blousemeasurements.dateTime";
+		String blouseQuery = " select customerdetail.name,customerdetail.bill_no,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,blousemeasurements.price from customerdetail,blousemeasurements where customerdetail.dateTime = blousemeasurements.dateTime";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -44,7 +44,7 @@ public class AdminShowOrderDao {
 
 	public List<ShowOrderPojo> showDressOrders() {
 		ArrayList<ShowOrderPojo> orders = new ArrayList<ShowOrderPojo>();
-		String dressQuery = "  select customerdetail.name,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,dressmeasurements.price from customerdetail,dressmeasurements where customerdetail.dateTime = dressmeasurements.dateTime";
+		String dressQuery = "  select customerdetail.name,customerdetail.bill_no,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,dressmeasurements.price from customerdetail,dressmeasurements where customerdetail.dateTime = dressmeasurements.dateTime";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -73,7 +73,7 @@ public class AdminShowOrderDao {
 	
 	public List<ShowOrderPojo> showDressBlouseOrders() {
 		ArrayList<ShowOrderPojo> orders = new ArrayList<ShowOrderPojo>();
-		String dressblouseQuery = "  select customerdetail.name,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,dressblouseboth.dressprice,dressblouseboth.blouseprice from customerdetail,dressblouseboth where customerdetail.dateTime = dressblouseboth.dateTime";
+		String dressblouseQuery = "  select customerdetail.name,customerdetail.bill_no,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,dressblouseboth.dressprice,dressblouseboth.blouseprice from customerdetail,dressblouseboth where customerdetail.dateTime = dressblouseboth.dateTime";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -108,7 +108,7 @@ public class AdminShowOrderDao {
 		order.setWorker(rs.getString("worker"));
 		order.setContact(rs.getString("contact"));
 		order.setPrice(rs.getInt("dressprice")+rs.getInt("blouseprice"));
-
+        order.setBillNo(rs.getInt("bill_no"));
 		return order;
 	}
 
@@ -120,7 +120,7 @@ public class AdminShowOrderDao {
 		order.setWorker(rs.getString("worker"));
 		order.setContact(rs.getString("contact"));
 		order.setPrice(rs.getInt("price"));
-
+		order.setBillNo(rs.getInt("bill_no"));
 		return order;
 	}
 }

@@ -7,7 +7,15 @@ public class OrderRemaningPojo {
 	private String worker;
 	private String cloth;
 	private int price;
+	private int billNo;
+	
 
+	public int getBillNo() {
+		return billNo;
+	}
+	public void setBillNo(int billNo) {
+		this.billNo = billNo;
+	}
 	public String getName() {
 		return name;
 	}

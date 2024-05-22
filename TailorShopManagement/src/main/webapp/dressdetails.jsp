@@ -5,12 +5,12 @@
 
 <head>
 <title>Title</title>
-<!-- Required meta tags -->
+
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Bootstrap CSS v5.2.1 -->
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -20,21 +20,17 @@
 </head>
 
 <body>
-	<header>
-		<!-- place navbar here -->
-		<header class="d-flex justify-content-center py-3 ">
+	<header class="d-flex justify-content-center py-3 ">
 			<ul class="nav nav-item">
 				<li class="nav-item "><a href="index.html" class="nav-link"
 					aria-current="page">Home</a></li>
 				<li class="nav-item"><a href="AddOrder.jsp" class="nav-link ">Back</a></li>
 			</ul>
 		</header>
-	</header>
 	<main>
 		<%
 		String username = request.getParameter("username");
 		String datetime = request.getParameter("dateTime");
-	
 		%>
 		<div class="row g-2">
 
@@ -43,22 +39,35 @@
 					action="DressDetailsServlet" method="post">
 
 					<div class="mb-3">
-						<label for="name" class="form-label">Name: <%=username%></label>
-						<input type="hidden" class="form-control" id="name"
-							name="username" value="<%=username%>"> <input
-							type="hidden" class="form-control"  name="dateTime"
-							value="<%=datetime%>">
+						<label for="name" class="form-label">Name: <%=username%></label> <input
+							type="hidden" class="form-control" id="name" name="username"
+							value="<%=username%>"> <input type="hidden"
+							class="form-control" name="dateTime" value="<%=datetime%>">
 
 					</div>
 					<div class="mb-3">
 						<div class="dropdown">
-							<select name="dresstype" id="dress" required>
+							<label>DressType:</label> <select name="dresstype" id="dress"
+								required>
 								<option value="punjabi suit" style="background-color: #FFDBAA;">Punjabi
 									Suit</option>
 								<option value="kurti">Kurti</option>
 								<option value="plazo" style="background-color: #FFDBAA;">Plazo</option>
 								<option value="patiala">Patiala</option>
 								<option value="gown" style="background-color: #FFDBAA;">Gown</option>
+							</select>
+						</div>
+					</div>
+					<div class="mb-3">
+						<div class="dropdown">
+							<label>Aster:</label> <select name="aster" id="astertype"
+								required>
+								<option value="clientAster" style="background-color: #FFDBAA;">Client
+									Aster</option>
+								<option value="shopAster">Shop Aster</option>
+								<option value="NO Aster" style="background-color: #FFDBAA;">No
+									Aster</option>
+
 							</select>
 						</div>
 					</div>
@@ -147,8 +156,7 @@
 						</div>
 						<label for="nopattern" class="form-label">No Pattern</label> <input
 							class="form-check-input" type="radio" name="dresspattern" id=""
-							value="No Pattern"> <br>
-						<br>  
+							value="No Pattern"> <br> <br>
 
 						<button type="submit" class="btn btn-dark"
 							style="background-color: #ffbfbf; color: black;">Submit</button>
@@ -157,16 +165,15 @@
 		</div>
 		<div class=" col-lg-6 p-3 col-md-6  p-5" id="imagecontainer">
 			<img class="img-fluid rounded-circle" src="Image/logo.jfif" alt=""
-				width="500" height="250"><br>
-			<br>
+				width="500" height="250"><br> <br>
 		</div>
-		</div>
+		
 
 	</main>
 	<footer>
-		<!-- place footer here -->
+		
 	</footer>
-	<!-- Bootstrap JavaScript Libraries -->
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
 		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

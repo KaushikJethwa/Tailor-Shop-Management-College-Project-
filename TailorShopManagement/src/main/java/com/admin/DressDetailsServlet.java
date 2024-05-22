@@ -30,13 +30,14 @@ public class DressDetailsServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		String pattern = request.getParameter("dresspattern");
 		String datetime = request.getParameter("dateTime");
-		
+		String aster = request.getParameter("aster");
 		AdminDao adminDao = new AdminDao();
 		int price = adminDao.getDressPrice(dresstype);
 		int patternPrice = adminDao.getPatternPrice(pattern);
+		int asterPrice=adminDao.getAsterPrice(aster);
 		System.out.println(price);
 		int result = adminDao.dressDetails(name, dresstype, shoulder, lengthoftop, lengthofhand, chest, neck, waist,
-				lengthoflower, lengthofbottom, description, price+patternPrice, datetime, pattern);
+				lengthoflower, lengthofbottom, description, price+patternPrice+asterPrice, datetime, pattern,aster);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("DressBill.jsp?username=" + name);
 		dispatcher.forward(request, response);
 

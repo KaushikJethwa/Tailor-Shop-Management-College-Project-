@@ -27,7 +27,6 @@ public class DressBlouseServlet extends HttpServlet {
 		String dresswaist = request.getParameter("waist");
 		String dresslengthoflower = request.getParameter("lengthoflower");
 		String dresslengthofbottom = request.getParameter("lengthofbottom");
-		String dressdescription = request.getParameter("description");
 		String dresspattern = request.getParameter("dresspattern");
 		String blouseshoulder = request.getParameter("shoulder");
 		String blouselengthofblouse = request.getParameter("lengthofblouse");
@@ -35,18 +34,22 @@ public class DressBlouseServlet extends HttpServlet {
 		String blousechest = request.getParameter("chest");
 		String blouseneck = request.getParameter("neck");
 		String blousewaist = request.getParameter("waist");
-		String blousedescription = request.getParameter("description");
+		String description = request.getParameter("description");
 		String blousepattern = request.getParameter("blousepattern");
 		String datetime = request.getParameter("dateTime");
+		String dressAster=request.getParameter("dressAster");
+		String blouseAster = request.getParameter("blouseAster");
 		AdminDao adminDao = new AdminDao();
 		int dressprice = adminDao.getDressPrice(dresstype);
 		int dressPatternPrice = adminDao.getPatternPrice(dresspattern);
 		int blouseprice = 350;
+		int dressAsterPrice = adminDao.getAsterPrice(dressAster);
+		int blouseAsterPrice = adminDao.getAsterPrice(blouseAster);
 		int blousePatternPrice = adminDao.getPatternPrice(blousepattern);
 		int result = adminDao.dressBlouseBoth(name, dresstype, dressshoulder, dresslengthofhand, dresslengthoftop,
-				dresschest, dressneck, dresswaist, dresslengthoflower, dresslengthofbottom, dressprice+dressPatternPrice, dresspattern,
-				blouseshoulder, blousechest, blousewaist, blouseneck, blouselengthofblouse, blouselengthofblouse,
-				blouseprice+blousePatternPrice, blousepattern, datetime, blousedescription);
+				dresschest, dressneck, dresswaist, dresslengthoflower, dresslengthofbottom, dressprice+dressPatternPrice+dressAsterPrice, dresspattern,
+				blouseshoulder, blousechest, blousewaist, blouseneck, blouselengthofblouse, blouselengthofhand,
+				blouseprice+blousePatternPrice+blouseAsterPrice, blousepattern, datetime, description,dressAster,blouseAster);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("dressblousebill.jsp?username=" + name);
 		dispatcher.forward(request, response);
 	}

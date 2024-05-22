@@ -7,14 +7,14 @@
 <html lang="en">
   <head>
     <title>Title</title>
-    <!-- Required meta tags -->
+    
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <!-- Bootstrap CSS v5.2.1 -->
+    
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -26,7 +26,7 @@
 
   <body>
     <header class="d-flex justify-content-center py-3 k">
-      <!-- place navbar here -->
+    
       <ul class="nav nav-item">
         <li class="nav-item">
           <a href="index.html" class="nav-link" aria-current="page">Home</a>
@@ -50,6 +50,7 @@
           <thead class="table-primary">
             <tr>
 			<th>Name</th>
+			<th>Bill No</th>
 			<th>Contact</th>
 			<th>Date</th>
 			<th>Worker</th>
@@ -63,6 +64,7 @@
 	%>
 		<tr>
 			<td><%= order.getName()%></td>
+			<td><%= order.getBillNo() %></td>
 			<td><%= order.getContact()%></td>
 			<td><%= order.getDate()%></td>
 			<td><%= order.getWorker()%></td>
@@ -78,6 +80,7 @@
 	%>
 		<tr>
 			<td><%= order.getName()%></td>
+			<td><%= order.getBillNo() %></td>
 			<td><%= order.getContact()%></td>
 			<td><%= order.getDate()%></td>
 			<td><%= order.getWorker()%></td>
@@ -92,6 +95,7 @@
 	%>
 		<tr>
 			<td><%= order.getName()%></td>
+			<td><%= order.getBillNo() %></td>
 			<td><%= order.getContact()%></td>
 			<td><%= order.getDate()%></td>
 			<td><%= order.getWorker()%></td>
@@ -107,9 +111,9 @@
       </div>
     </main>
     <footer>
-      <!-- place footer here -->
+    
     </footer>
-    <!-- Bootstrap JavaScript Libraries -->
+    
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
       integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

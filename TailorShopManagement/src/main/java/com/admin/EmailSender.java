@@ -10,9 +10,7 @@ public class EmailSender {
 		StringBuilder htmlTable = new StringBuilder();
 		htmlTable.append("<table border='1' style='border-collapse:collapse'>");
 		htmlTable.append("<tr>");
-		htmlTable.append("<th>Name</th><th>Bill No</th><th>Date</th>\r\n" + "			<th>Cloth</th>\r\n"
-				+ "			<th>DressType</th>\r\n" + "			<th>Measurements</th>\r\n"
-				+ "			<th>Price</th>\r\n" + "			<th></th></tr></thead>");
+		htmlTable.append("<th>Name</th><th>Bill No</th><th>Date</th><th>Cloth</th><th>Dress Type</th><th>Measurements</th><th>Advance</th><th>Price</th><th>Total Price</th></tr></thead>" );
         htmlTable.append("<tr>");
         htmlTable.append("<td>").append(billPojo.getName()).append("</td>");
         htmlTable.append("<td>").append(billPojo.getBillNo()).append("</td>");
@@ -21,7 +19,17 @@ public class EmailSender {
         htmlTable.append("<td>").append(billPojo.getDresstype()).append("</td>");
         htmlTable.append("<td>").append("Chest:").append(billPojo.getChest()).append("<br>").append("Shoulder:").append(billPojo.getShoulder()).append("<br>").append("LengthofHand:").append(billPojo.getLengthofhand()).append("<br>").append("LengthofTop:").append(billPojo.getLengthoftop()).append("<br>").append("Waist:").append(billPojo.getWaist()).append("<br>").append("Neck:").append(billPojo.getNeck()).append("<br>").append("LengthofLower:").append(billPojo.getLengthoflower()).append("<br>").append("LengthofBottom:").append(billPojo.getLengthofbottom()).append("</td>");
         htmlTable.append("</td>");
+        htmlTable.append("<td>").append(billPojo.getAdvance());
+        htmlTable.append("</td>");
         htmlTable.append("<td>").append(billPojo.getPrice());
+        htmlTable.append("</td>");
+        htmlTable.append("<td>").append((billPojo.getPrice()-billPojo.getAdvance()));
+        htmlTable.append("</td>");
+        htmlTable.append("</tr>");
+        htmlTable.append("<tr>");
+        htmlTable.append("<td colspan='5'>").append("Expected Delivery Date:").append(billPojo.getDeliveryDate());
+        htmlTable.append("</td>");
+        htmlTable.append("<td colspan='5'>").append("For any enquires contact:7710865789");
         htmlTable.append("</td>");
         htmlTable.append("</tr>");
         htmlTable.append("</table>");
@@ -37,9 +45,7 @@ public class EmailSender {
 		StringBuilder htmlTable = new StringBuilder();
 		htmlTable.append("<table border='1' style='border-collapse:collapse'>");
 		htmlTable.append("<tr>");
-		htmlTable.append("<th>Name</th><th>Bill No</th><th>Date</th>\r\n" + "			<th>Cloth</th>\r\n"
-			+ "			<th>Measurements</th>\r\n"
-				+ "			<th>Price</th>\r\n" + "			<th></th></tr></thead>");
+		htmlTable.append("<th>Name</th><th>Bill No</th><th>Date</th><th>Cloth</th><th>Measurements</th><th>Advance</th><th>Price</th><th>Total Price</th></tr></thead>");
         htmlTable.append("<tr>");
         htmlTable.append("<td>").append(billPojo.getName()).append("</td>");
         htmlTable.append("<td>").append(billPojo.getBillNo()).append("</td>");
@@ -47,7 +53,17 @@ public class EmailSender {
         htmlTable.append("<td>").append("Blouse").append("</td>");
         htmlTable.append("<td>").append("Chest:").append(billPojo.getChest()).append("<br>").append("Shoulder:").append(billPojo.getShoulder()).append("<br>").append("LengthofHand:").append(billPojo.getLengthofhand()).append("<br>").append("LengthofBlouse:").append(billPojo.getLengthofblouse()).append("<br>").append("Waist:").append(billPojo.getWaist()).append("<br>").append("Neck:").append(billPojo.getNeck()).append("</td>");
         htmlTable.append("</td>");
+        htmlTable.append("<td>").append(billPojo.getAdvance());
+        htmlTable.append("</td>");
         htmlTable.append("<td>").append(billPojo.getPrice());
+        htmlTable.append("</td>");
+        htmlTable.append("<td>").append((billPojo.getPrice()-billPojo.getAdvance()));
+        htmlTable.append("</td>");
+        htmlTable.append("</tr>");
+        htmlTable.append("<tr>");
+        htmlTable.append("<td colspan='5'>").append("Expected Delivery Date:").append(billPojo.getDeliveryDate());
+        htmlTable.append("</td>");
+        htmlTable.append("<td colspan='5'>").append("For any enquires contact:7710865789");
         htmlTable.append("</td>");
         htmlTable.append("</tr>");
         htmlTable.append("</table>");
@@ -63,9 +79,7 @@ public class EmailSender {
 		StringBuilder htmlTable = new StringBuilder();
 		htmlTable.append("<table border='1' style='border-collapse:collapse'>");
 		htmlTable.append("<tr>");
-		htmlTable.append("<th>Name</th><th>Bill No</th><th>Date</th>\r\n" + "<th>Cloth</th>\r\n"
-				+ "			<th>DressMeasurments</th>\r\n" + "<th>BlouseMeasurements</th>\r\n"
-				+ "			<th>DressPrice</th>\r\n" + "<th>BlousePrice</th>\r\n"+ "<th>TotalPrice</th>\r\n"+ "<th></th></tr></thead>");
+		htmlTable.append("<th>Name</th><th>Bill No</th><th>Date</th><th>Cloth</th><th>DressMeasurements</th><th>BlouseMeasurements</th><th>DressPrice</th><th>BlousePrice</th><th>Advance</th><th>Total Price</th></tr></thead>");
         htmlTable.append("<tr>");
         htmlTable.append("<td>").append(billPojo.getName()).append("</td>");
         htmlTable.append("<td>").append(billPojo.getBillNo()).append("</td>");
@@ -79,7 +93,15 @@ public class EmailSender {
         htmlTable.append("</td>");
         htmlTable.append("<td>").append(billPojo.getBlouseprice());
         htmlTable.append("</td>");
-        htmlTable.append("<td>").append(billPojo.getDressprice()+billPojo.getBlouseprice());
+        htmlTable.append("<td>").append(billPojo.getAdvance());
+        htmlTable.append("</td>");
+        htmlTable.append("<td>").append((billPojo.getDressprice()+billPojo.getBlouseprice())-(billPojo.getAdvance()));
+        htmlTable.append("</td>");
+        htmlTable.append("</tr>");
+        htmlTable.append("<tr>");
+        htmlTable.append("<td colspan='5'>").append("Expected Delivery Date:").append(billPojo.getDeliveryDate());
+        htmlTable.append("</td>");
+        htmlTable.append("<td colspan='5'>").append("For any enquires contact:7710865789");
         htmlTable.append("</td>");
         htmlTable.append("</tr>");
         htmlTable.append("</table>");

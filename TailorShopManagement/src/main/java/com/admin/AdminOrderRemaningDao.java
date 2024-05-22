@@ -17,7 +17,7 @@ public class AdminOrderRemaningDao {
 
 	public List<OrderRemaningPojo> showBlouseorderRemanings() {
 		ArrayList<OrderRemaningPojo> orderRemanings = new ArrayList<OrderRemaningPojo>();
-		String blouseQuery = " select customerdetail.name,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,blousemeasurements.price,blousemeasurements.completed from customerdetail,blousemeasurements where customerdetail.dateTime = blousemeasurements.dateTime and blousemeasurements.completed=?";
+		String blouseQuery = " select customerdetail.name,customerdetail.bill_no,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,blousemeasurements.price,blousemeasurements.completed from customerdetail,blousemeasurements where customerdetail.dateTime = blousemeasurements.dateTime and blousemeasurements.completed=?";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -46,7 +46,7 @@ public class AdminOrderRemaningDao {
 
 	public List<OrderRemaningPojo> showDressorderRemanings() {
 		ArrayList<OrderRemaningPojo> orderRemanings = new ArrayList<OrderRemaningPojo>();
-		String dressQuery = "  select customerdetail.name,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,dressmeasurements.price,dressmeasurements.completed from customerdetail,dressmeasurements where customerdetail.dateTime = dressmeasurements.dateTime and dressmeasurements.completed=?";
+		String dressQuery = "  select customerdetail.name,customerdetail.bill_no,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,dressmeasurements.price,dressmeasurements.completed from customerdetail,dressmeasurements where customerdetail.dateTime = dressmeasurements.dateTime and dressmeasurements.completed=?";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -75,7 +75,7 @@ public class AdminOrderRemaningDao {
 	
 	public List<OrderRemaningPojo> showDressBlouseorderRemanings() {
 		ArrayList<OrderRemaningPojo> orderRemanings = new ArrayList<OrderRemaningPojo>();
-		String dressblouseQuery = "  select customerdetail.name,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,dressblouseboth.dressprice,dressblouseboth.blouseprice,dressblouseboth.completed from customerdetail,dressblouseboth where customerdetail.dateTime = dressblouseboth.dateTime and dressblouseboth.completed=?";
+		String dressblouseQuery = "  select customerdetail.name,customerdetail.bill_no,customerdetail.contact,customerdetail.cloth,customerdetail.worker,Date_Format(customerdetail.dateTime,'%d-%m-%Y %h:%i %p') as date,dressblouseboth.dressprice,dressblouseboth.blouseprice,dressblouseboth.completed from customerdetail,dressblouseboth where customerdetail.dateTime = dressblouseboth.dateTime and dressblouseboth.completed=?";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -111,6 +111,7 @@ public class AdminOrderRemaningDao {
 		orderRemaning.setWorker(rs.getString("worker"));
 		orderRemaning.setContact(rs.getString("contact"));
 		orderRemaning.setPrice(rs.getInt("dressprice")+rs.getInt("blouseprice"));
+		orderRemaning.setBillNo(rs.getInt("bill_no"));
         
 		return orderRemaning;
 	}
@@ -123,7 +124,7 @@ public class AdminOrderRemaningDao {
 		orderRemaning.setWorker(rs.getString("worker"));
 		orderRemaning.setContact(rs.getString("contact"));
 		orderRemaning.setPrice(rs.getInt("price"));
-		
+		orderRemaning.setBillNo(rs.getInt("bill_no"));
 		return orderRemaning;
 	}
 }

@@ -16,7 +16,38 @@ public class WorkerDAO {
 
 	public List<WorkerBlouseOrderPOJO> showBlouseOrders(String worker) {
 		ArrayList<WorkerBlouseOrderPOJO> orders = new ArrayList<WorkerBlouseOrderPOJO>();
-		String blouseQuery = "select blousemeasurements.shoulder,customerdetail.bill_no,blousemeasurements.lengthofblouse,blousemeasurements.lengthofhand,blousemeasurements.chest,blousemeasurements.neck,blousemeasurements.waist,blousemeasurements.name,blousemeasurements.dateTime as date,blousemeasurements.pattern,blousemeasurements.description from blousemeasurements,customerdetail where (blousemeasurements.dateTime = customerdetail.dateTime) and (customerdetail.worker = ? and blousemeasurements.completed = ?)";
+		String blouseQuery = "select blousemeasurements.shoulder,customerdetail.bill_no,blousemeasurements.lengthofblouse,blousemeasurements.lengthofhand,blousemeasurements.chest,blousemeasurements.neck,blousemeasurements.waist,blousemeasurements.name,blousemeasurements.dateTime as date,blousemeasurements.pattern,blousemeasurements.description from blousemeasurements,customerdetail where ((blousemeasurements.dateTime = customerdetail.dateTime) and (customerdetail.worker = ? and blousemeasurements.completed = ?)) and customerdetail.urgent=?";
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch 
+			e.printStackTrace();
+		}
+		try {
+			Connection con = DriverManager.getConnection(url, user, pass);
+			PreparedStatement ps = con.prepareStatement(blouseQuery);
+			ps.setString(1, worker);
+			ps.setString(2, "NO");
+			ps.setString(3, "NO");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				orders.add(createBlouseOrderFromResultSet(rs));
+			}
+			ps.close();
+			rs.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return orders;
+
+	}
+	
+	public List<WorkerBlouseOrderPOJO> showUrgentBlouseOrders(String worker) {
+		ArrayList<WorkerBlouseOrderPOJO> orders = new ArrayList<WorkerBlouseOrderPOJO>();
+		String blouseQuery = "select blousemeasurements.shoulder,customerdetail.bill_no,blousemeasurements.lengthofblouse,blousemeasurements.lengthofhand,blousemeasurements.chest,blousemeasurements.neck,blousemeasurements.waist,blousemeasurements.name,blousemeasurements.dateTime as date,blousemeasurements.pattern,blousemeasurements.description from blousemeasurements,customerdetail where ((blousemeasurements.dateTime = customerdetail.dateTime) and (customerdetail.worker = ? and blousemeasurements.completed = ?)) and customerdetail.urgent = ?";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -29,6 +60,7 @@ public class WorkerDAO {
 			PreparedStatement ps = con.prepareStatement(blouseQuery);
 			ps.setString(1, worker);
 			ps.setString(2, "NO");
+			ps.setString(3, "YES");
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -45,9 +77,10 @@ public class WorkerDAO {
 
 	}
 
+
 	public List<WorkerDressOrderPOJO> showDressOrders(String worker) {
 		ArrayList<WorkerDressOrderPOJO> orders = new ArrayList<WorkerDressOrderPOJO>();
-		String dressQuery = "select dressmeasurements.dresstype,customerdetail.bill_no,dressmeasurements.shoulder,dressmeasurements.lengthoftop,dressmeasurements.lengthofhand,dressmeasurements.chest,dressmeasurements.neck,dressmeasurements.waist,dressmeasurements.lengthoflower,dressmeasurements.lengthofbottom,dressmeasurements.dateTime as date,dressmeasurements.pattern,dressmeasurements.name,dressmeasurements.description from dressmeasurements,customerdetail where (dressmeasurements.dateTime = customerdetail.dateTime) and (customerdetail.worker = ? and dressmeasurements.completed = ?)";
+		String dressQuery = "select dressmeasurements.dresstype,customerdetail.bill_no,dressmeasurements.shoulder,dressmeasurements.lengthoftop,dressmeasurements.lengthofhand,dressmeasurements.chest,dressmeasurements.neck,dressmeasurements.waist,dressmeasurements.lengthoflower,dressmeasurements.lengthofbottom,dressmeasurements.dateTime as date,dressmeasurements.pattern,dressmeasurements.name,dressmeasurements.description from dressmeasurements,customerdetail where ((dressmeasurements.dateTime = customerdetail.dateTime) and (customerdetail.worker = ? and dressmeasurements.completed = ?)) and customerdetail.urgent= ?";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -60,6 +93,38 @@ public class WorkerDAO {
 			PreparedStatement ps = con.prepareStatement(dressQuery);
 			ps.setString(1, worker);
 			ps.setString(2, "NO");
+			ps.setString(3, "NO");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				orders.add(createDressOrderFromResultSet(rs));
+			}
+			ps.close();
+			rs.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return orders;
+
+	}
+	
+	public List<WorkerDressOrderPOJO> showUrgentDressOrders(String worker) {
+		ArrayList<WorkerDressOrderPOJO> orders = new ArrayList<WorkerDressOrderPOJO>();
+		String dressQuery = "select dressmeasurements.dresstype,customerdetail.bill_no,dressmeasurements.shoulder,dressmeasurements.lengthoftop,dressmeasurements.lengthofhand,dressmeasurements.chest,dressmeasurements.neck,dressmeasurements.waist,dressmeasurements.lengthoflower,dressmeasurements.lengthofbottom,dressmeasurements.dateTime as date,dressmeasurements.pattern,dressmeasurements.name,dressmeasurements.description from dressmeasurements,customerdetail where ((dressmeasurements.dateTime = customerdetail.dateTime) and (customerdetail.worker = ? and dressmeasurements.completed = ?)) and customerdetail.urgent = ?";
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch bl
+			e.printStackTrace();
+		}
+		try {
+			Connection con = DriverManager.getConnection(url, user, pass);
+			PreparedStatement ps = con.prepareStatement(dressQuery);
+			ps.setString(1, worker);
+			ps.setString(2, "NO");
+			ps.setString(3, "YES");
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -76,9 +141,10 @@ public class WorkerDAO {
 
 	}
 
+
 	public List<WorkerDressBlouseBothPOJO> showDressBlouseOrders(String worker){
 		ArrayList<WorkerDressBlouseBothPOJO> orders = new ArrayList<WorkerDressBlouseBothPOJO>();
-		String dressblouseQuery = "select dressblouseboth.dressshoulder,customerdetail.bill_no,dressblouseboth.dresslengthofhand,dressblouseboth.dresslengthoftop,dressblouseboth.dresschest,dressblouseboth.dressneck,dressblouseboth.dateTime as date,dressblouseboth.dresswaist,dressblouseboth.dresslengthoflower,dressblouseboth.dresslengthofbottom,dressblouseboth.blousechest,dressblouseboth.blousewaist,dressblouseboth.blouseneck,dressblouseboth.blouseshoulder,dressblouseboth.lengthofblouse,dressblouseboth.lengthofblousehand,dressblouseboth.name,dressblouseboth.dresspattern,dressblouseboth.blousepattern,dressblouseboth.description from dressblouseboth,customerdetail where (dressblouseboth.dateTime = customerdetail.dateTime) and (customerdetail.worker = ? and dressblouseboth.completed = ?)";
+		String dressblouseQuery = "select dressblouseboth.dressshoulder,customerdetail.bill_no,dressblouseboth.dresslengthofhand,dressblouseboth.dresslengthoftop,dressblouseboth.dresschest,dressblouseboth.dressneck,dressblouseboth.dateTime as date,dressblouseboth.dresswaist,dressblouseboth.dresslengthoflower,dressblouseboth.dresslengthofbottom,dressblouseboth.blousechest,dressblouseboth.blousewaist,dressblouseboth.blouseneck,dressblouseboth.blouseshoulder,dressblouseboth.lengthofblouse,dressblouseboth.lengthofblousehand,dressblouseboth.name,dressblouseboth.dresspattern,dressblouseboth.blousepattern,dressblouseboth.description from dressblouseboth,customerdetail where ((dressblouseboth.dateTime = customerdetail.dateTime) and (customerdetail.worker = ? and dressblouseboth.completed = ?)) and customerdetail.urgent=?";
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -91,6 +157,7 @@ public class WorkerDAO {
 			PreparedStatement ps = con.prepareStatement(dressblouseQuery);
 			ps.setString(1, worker);
 			ps.setString(2, "NO");
+			ps.setString(3, "NO");
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -106,6 +173,39 @@ public class WorkerDAO {
 		return orders;
 
 	}
+	
+	public List<WorkerDressBlouseBothPOJO> showUrgentDressBlouseOrders(String worker){
+		ArrayList<WorkerDressBlouseBothPOJO> orders = new ArrayList<WorkerDressBlouseBothPOJO>();
+		String dressblouseQuery = "select dressblouseboth.dressshoulder,customerdetail.bill_no,dressblouseboth.dresslengthofhand,dressblouseboth.dresslengthoftop,dressblouseboth.dresschest,dressblouseboth.dressneck,dressblouseboth.dateTime as date,dressblouseboth.dresswaist,dressblouseboth.dresslengthoflower,dressblouseboth.dresslengthofbottom,dressblouseboth.blousechest,dressblouseboth.blousewaist,dressblouseboth.blouseneck,dressblouseboth.blouseshoulder,dressblouseboth.lengthofblouse,dressblouseboth.lengthofblousehand,dressblouseboth.name,dressblouseboth.dresspattern,dressblouseboth.blousepattern,dressblouseboth.description from dressblouseboth,customerdetail where ((dressblouseboth.dateTime = customerdetail.dateTime) and (customerdetail.worker = ? and dressblouseboth.completed = ?)) and customerdetail.urgent=?";
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch bl
+			e.printStackTrace();
+		}
+		try {
+			Connection con = DriverManager.getConnection(url, user, pass);
+			PreparedStatement ps = con.prepareStatement(dressblouseQuery);
+			ps.setString(1, worker);
+			ps.setString(2, "NO");
+			ps.setString(3, "YES");
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				orders.add(createDressBlouseOrderFromResultSet(rs));
+			}
+			ps.close();
+			rs.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return orders;
+
+	}
+
 
 	public WorkerDressOrderPOJO createDressOrderFromResultSet(ResultSet rs) throws SQLException {
 		WorkerDressOrderPOJO order = new WorkerDressOrderPOJO();
@@ -134,6 +234,7 @@ public class WorkerDAO {
 		order.setLengthofblouse(rs.getString("lengthofblouse"));
 		order.setLengthofhand(rs.getString("lengthofhand"));
 		order.setNeck(rs.getString("neck"));
+		order.setShoulder(rs.getString("shoulder"));
 		order.setWaist(rs.getString("waist"));
 		order.setPattern(rs.getString("pattern"));
 		order.setBlousedescription(rs.getString("description"));
